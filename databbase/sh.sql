@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2026 at 10:11 PM
+-- Generation Time: Apr 02, 2026 at 04:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,7 +44,6 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `username`, `firstname`, `lastname`, `total_price`, `address`, `phone`, `status`, `created_at`) VALUES
-(6, 'rr', 'dd', 'rr', 6900.00, 'sfsdf', '12321', 'pending', '2026-02-07 11:13:20'),
 (7, 'rr', 'ตึง', 'แนวว', 2300.00, 'reegrg', '2341442', 'pending', '2026-02-07 11:17:59'),
 (9, 'ืnoey', 'noey', 'zaza', 2500.00, 'dgdfg', '2234354543', 'pending', '2026-02-07 15:51:29'),
 (11, 'uten', 'ดหกดกห', 'กหดห', 2300.00, 'sdfsdfsgf', '35423466', 'shipped', '2026-02-08 15:56:10'),
@@ -56,7 +55,8 @@ INSERT INTO `orders` (`id`, `username`, `firstname`, `lastname`, `total_price`, 
 (21, 'user2', 'fost', 'tf', 2500.00, '345ggg', '242343543534', 'cancelled', '2026-04-01 19:23:40'),
 (22, 'user2', 'fost', 'tf', 2500.00, '345ggg', '242343543534', 'pending', '2026-04-01 19:28:18'),
 (23, 'user2', 'fost', 'tf', 2500.00, '345ggg', '242343543534', 'shipped', '2026-04-01 19:33:40'),
-(24, 'user3', 'eeww', 'eerr', 2000.00, '4/90\r\n4/90', '432325465464', 'pending', '2026-04-01 20:02:58');
+(24, 'user3', 'eeww', 'eerr', 2000.00, '4/90\r\n4/90', '432325465464', 'pending', '2026-04-01 20:02:58'),
+(25, 'user3', 'eeww', 'eerr', 1500.00, '4/90\r\n4/90', '432325465464', 'paid', '2026-04-02 01:46:30');
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,6 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `size`, `color`, `selected_size`, `selected_color`, `qty`, `price_at_purchase`) VALUES
-(6, 6, 8, NULL, NULL, NULL, NULL, 3, 2300.00),
 (7, 7, 8, NULL, NULL, NULL, NULL, 1, 2300.00),
 (9, 9, 7, NULL, NULL, NULL, NULL, 1, 2500.00),
 (11, 11, 8, NULL, NULL, NULL, NULL, 1, 2300.00),
@@ -93,7 +92,8 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `size`, `color`, `s
 (21, 21, 15, NULL, NULL, NULL, NULL, 1, 2500.00),
 (22, 22, 15, NULL, NULL, NULL, NULL, 1, 2500.00),
 (23, 23, 15, '38', 'red', NULL, NULL, 1, 2500.00),
-(24, 24, 16, '39', 'brown', NULL, NULL, 1, 2000.00);
+(24, 24, 16, '39', 'brown', NULL, NULL, 1, 2000.00),
+(25, 25, 19, '40', 'white', NULL, NULL, 1, 1500.00);
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `image`, `description`, `sizes`, `colors`, `brand`, `image_variants`) VALUES
 (16, 'AidasMax', 2000.00, '1775073401.png', 'รองเท้า AdidasMax รองเท้าผ้าใบดีไซน์คลาสสิก ผสมผสานความเรียบง่ายและความทันสมัย เหมาะสำหรับการสวมใส่ในชีวิตประจำวัน ให้ความสบายตลอดการใช้งาน ตัวรองเท้าผลิตจากวัสดุคุณภาพดี มีความทนทาน และระบายอากาศได้ดี ช่วยลดความอับชื้นภายในรองเท้า\r\n\r\nพื้นรองเท้าออกแบบมาเพื่อรองรับแรงกระแทก ทำให้เดินสบาย ไม่เมื่อยล้า เหมาะสำหรับการเดินทาง ท่องเที่ยว หรือใส่ทำงานในวันสบาย ๆ สามารถเข้ากับการแต่งตัวได้หลายสไตล์ ทั้งแนวลำลองและสปอร์ต', '38,39,40,41', 'black,brown', 'Adidas', 'black:blackadidas.png,brown:bronadidas.png'),
-(18, 'AirMax', 2000.00, '1775073555.png', 'รองเท้า AirMax ออกแบบมาเพื่อความสบายและสไตล์ที่ทันสมัย เหมาะสำหรับการสวมใส่ในชีวิตประจำวัน ไม่ว่าจะเป็นการเดินทาง ท่องเที่ยว หรือออกกำลังกาย ตัวรองเท้าผลิตจากวัสดุคุณภาพดี ระบายอากาศได้ดี ช่วยลดความอับชื้น พร้อมพื้นรองเท้าที่รองรับแรงกระแทก ทำให้สวมใส่สบายตลอดวัน\r\n\r\nดีไซน์ทันสมัย น้ำหนักเบา เคลื่อนไหวได้คล่องตัว เหมาะสำหรับทุกเพศทุกวัย สามารถแมทช์กับเสื้อผ้าได้หลายสไตล์ เช่น ลำลอง สปอร์ต หรือแฟชั่น', '38,39,40,41', 'red,gray', 'Nike', 'red:rednike.png,gray:graynike.png');
+(18, 'AirMax', 2000.00, '1775073555.png', 'รองเท้า AirMax ออกแบบมาเพื่อความสบายและสไตล์ที่ทันสมัย เหมาะสำหรับการสวมใส่ในชีวิตประจำวัน ไม่ว่าจะเป็นการเดินทาง ท่องเที่ยว หรือออกกำลังกาย ตัวรองเท้าผลิตจากวัสดุคุณภาพดี ระบายอากาศได้ดี ช่วยลดความอับชื้น พร้อมพื้นรองเท้าที่รองรับแรงกระแทก ทำให้สวมใส่สบายตลอดวัน\r\n\r\nดีไซน์ทันสมัย น้ำหนักเบา เคลื่อนไหวได้คล่องตัว เหมาะสำหรับทุกเพศทุกวัย สามารถแมทช์กับเสื้อผ้าได้หลายสไตล์ เช่น ลำลอง สปอร์ต หรือแฟชั่น', '38,39,40,41', 'red,gray', 'Nike', 'red:rednike.png,gray:graynike.png'),
+(19, 'PumaMax', 1500.00, '1775093878.png', 'องเท้ารุ่น PumaMax จาก Puma ถูกออกแบบมาเพื่อผสานความเรียบหรูเข้ากับความสบายในการสวมใส่ เหมาะสำหรับการใช้งานในชีวิตประจำวันและไลฟ์สไตล์ที่ทันสมัย ตัวรองเท้าโดดเด่นด้วยโทนสีเทาสุภาพ ให้ลุคมินิมอล สามารถแมตช์ได้ง่ายกับหลากหลายสไตล์การแต่งกาย\r\n\r\nวัสดุส่วนบนผลิตจากหนังกลับคุณภาพสูง (Suede) ให้สัมผัสนุ่ม ระบายอากาศได้ดี พร้อมเสริมความทนทานในทุกการใช้งาน พื้นรองเท้าด้านนอกออกแบบให้มีความยืดหยุ่นและยึดเกาะได้ดี ช่วยเพิ่มความมั่นใจในทุกย่างก้าว\r\n\r\nโครงสร้างภายในรองรับรูปเท้าอย่างเหมาะสม ลดแรงกระแทก และเพิ่มความสบายแม้สวมใส่เป็นเวลานาน เหมาะสำหรับผู้ที่ต้องการทั้งความสวยงามและประสิทธิภาพในการใช้งาน', '38,39,40,41', 'black,white,gray', 'Puma', 'gray:graypuma.png,black:pumablack.png,white:pumawhite.png');
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `ema
 (9, 'uten', '$2y$10$GDaJP56rMdlPAEMrrE1FhOPQu3hPWUJdulDfyNk8DvtHHtpDJtDfa', 'utensirarom', 'deemak', 'rrttqqeett@gmail.com', '293798579', 'macko', '2026-02-08 15:17:52', 'user'),
 (11, 'qq', '$2y$10$fvomrJPmwT9wR4JBwByq/eoX2XLb.XuxUxkF6B.MYJhsVJ4FO/Nmi', 'qq', 'ww', 'dfsdf@gmail.com', '123456778', '490', '2026-03-09 06:26:59', 'admin'),
 (12, 'ff123', '$2y$10$w/Qd2lmf27mktgs4ILSV6Os0Bvt0Xv6jmvX4PKdAi5D99nJVbZHSy', 'sdfs', 'sdfsf', 'sdfsQ@gdfg.com', '234125435', 'fed', '2026-03-14 12:19:29', 'user'),
-(13, 'user2', '$2y$10$RTwjLI7OHw9I9dHrHZ45gekoPQ184shIvfvbr6O44lj5qIA7cR1eW', 'fost', 'tf', 'sfdsfs@gmail.com', '242343543534', '345ggg', '2026-03-16 12:27:01', 'user'),
+(13, 'user2', '$2y$10$RTwjLI7OHw9I9dHrHZ45gekoPQ184shIvfvbr6O44lj5qIA7cR1eW', 'yanapat', 'ngoendee', 'sfdsfs@gmail.com', '242343543534', '345ggg', '2026-03-16 12:27:01', 'user'),
 (14, 'user3', '$2y$10$FG9z5c.QBlUg6VnJJ5qsiuScgRLjjBaOy8esaDI6IJkoozQPuFdKS', 'eeww', 'eerr', 'fsnlskn@gmail.com', '432325465464', '4/90\r\n4/90', '2026-03-16 12:59:04', 'admin');
 
 --
@@ -194,19 +195,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
