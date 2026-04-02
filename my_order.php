@@ -71,16 +71,27 @@ $result = mysqli_query($conn, $sql);
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg sticky-top mb-4">
+<nav class="navbar navbar-expand-lg sticky-top mb-4 shadow">
     <div class="container">
         <button class="btn text-white me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
             <i class="fas fa-bars fa-lg"></i>
         </button>
+        
         <a class="navbar-brand text-white fw-bold" href="index.php">
             <i class="fas fa-shoe-prints me-2" style="color: #4895ef;"></i> SHORE STORE
         </a>
-        <div class="ms-auto text-white-50 small">
-            สวัสดีคุณ: <?php echo htmlspecialchars($user_data['firstname'] ?? $user_now); ?>
+
+        <div class="ms-auto d-flex align-items-center">
+            <a href="cart.php" class="nav-link text-white position-relative me-3">
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">
+                    <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                </span>
+            </a>
+            
+            <div class="text-white small border-start ps-3 d-none d-md-block">
+                สวัสดีคุณ, <strong><?php echo htmlspecialchars($user_data['firstname'] ?? $user_now); ?></strong>
+            </div>
         </div>
     </div>
 </nav>
@@ -117,7 +128,6 @@ $result = mysqli_query($conn, $sql);
 
     <?php if ($result && mysqli_num_rows($result) > 0): ?>
         <?php while ($order = mysqli_fetch_assoc($result)): 
-            // กำหนดสี Badge ตามสถานะ
             $status = $order['status'];
             $st_class = "bg-pending"; $st_text = "รอตรวจสอบ";
             if($status == 'paid') { $st_class = "bg-paid"; $st_text = "ชำระเงินแล้ว"; }

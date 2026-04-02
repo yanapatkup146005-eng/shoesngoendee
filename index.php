@@ -88,17 +88,23 @@ if (isset($_GET['logout'])) {
         <button class="btn text-white me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
             <i class="fas fa-bars fa-lg"></i>
         </button>
+
         <a class="navbar-brand" href="index.php">
             <i class="fas fa-shoe-prints"></i>
             <span>SHOE STORE</span>
         </a>
-        <div class="ms-auto">
-            <a href="cart.php" class="nav-link text-white position-relative">
+
+        <div class="ms-auto d-flex align-items-center">
+            <a href="cart.php" class="nav-link text-white position-relative me-3">
                 <i class="fas fa-shopping-cart fa-lg"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">
                     <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
                 </span>
             </a>
+
+            <div class="text-white small border-start ps-3">
+                สวัสดีคุณ, <strong><?php echo htmlspecialchars($user_data['firstname'] ?? $user_now); ?></strong>
+            </div>
         </div>
     </div>
 </nav>
@@ -130,7 +136,7 @@ if (isset($_GET['logout'])) {
 
 <div class="container mb-5">
     <div class="mb-5 text-center">
-        <h4 class="fw-bold mb-4">หมวดสินค้า</h4>
+        <!-- <h4 class="fw-bold mb-4">หมวดสินค้า</h4> -->
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="index.php?brand=all" class="brand-pill <?php echo $brand_filter == 'all' ? 'active' : ''; ?>">ทั้งหมด</a>
             <?php while($b = mysqli_fetch_assoc($brand_list)): ?>

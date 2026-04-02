@@ -63,21 +63,27 @@ if (!$product) {
         <button class="btn text-white me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
             <i class="fas fa-bars fa-lg"></i>
         </button>
+
         <a class="navbar-brand text-white" href="index.php">
             <i class="fas fa-shoe-prints me-2" style="color: #4895ef;"></i> SHORE STORE
         </a>
+
         <div class="ms-auto d-flex align-items-center">
-            <a href="cart.php" class="text-white text-decoration-none me-3">
+            <a href="cart.php" class="nav-link text-white position-relative me-3">
                 <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">
+                    <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                </span>
             </a>
-            <div class="text-white-50 small d-none d-md-block">
-                สวัสดี, <?php echo htmlspecialchars($user_data['firstname'] ?? $user_now); ?>
+
+            <div class="text-white small border-start ps-3 d-none d-md-block">
+                สวัสดีคุณ, <strong><?php echo htmlspecialchars($user_data['firstname'] ?? $user_now); ?></strong>
             </div>
         </div>
     </div>
 </nav>
 
-<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu">
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu" style="width: 280px;">
     <div class="offcanvas-header border-bottom border-secondary">
         <h5 class="offcanvas-title fw-bold">เมนูผู้ใช้งาน</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
@@ -132,10 +138,7 @@ if (!$product) {
                         <select name="color" id="colorSelect" class="form-select py-3" required>
                             <option value="" data-img="<?php echo $product['image']; ?>">กรุณาเลือกสี</option>
                             <?php 
-                            // ดึงรายการสีหลัก
                             $colors_list = explode(',', $product['colors']); 
-                            
-                            // จัดการข้อมูลรูปภาพแยกตามสีจาก image_variants
                             $variants = [];
                             if (!empty($product['image_variants'])) {
                                 $v_pairs = explode(',', $product['image_variants']);
@@ -147,7 +150,6 @@ if (!$product) {
 
                             foreach($colors_list as $c): 
                                 $c = trim($c);
-                                // ตรวจสอบว่าสีนี้มีรูประบุไว้ไหม ถ้าไม่มีให้ใช้รูปหลัก
                                 $img_to_show = isset($variants[$c]) ? $variants[$c] : $product['image'];
                             ?>
                                 <option value="<?php echo $c; ?>" data-img="<?php echo $img_to_show; ?>">
@@ -164,7 +166,6 @@ if (!$product) {
 </div>
 
 <script>
-// สคริปต์สลับรูปภาพตามสีที่ระบุใน image_variants
 document.getElementById('colorSelect').addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];
     const newImgName = selectedOption.getAttribute('data-img');
